@@ -2,7 +2,7 @@
 Analyzing an EMAIL Archive and vizualizing the data using the D3 JavaScript library.
 I used the mail archive stored at http://mbox.dr-chuck.net/ for this project.
 
-The first step is to spider the repository.  The base URL is hard-coded in the *gmane.py* and is hard-coded to the Sakaideveloper list. The *gmane.py* file operates as a spider in that it runs slowly and retrieves one mail message per second so  as to avoid getting throttled by the website. It stores all of its data in a database and can be interrupted and re-started as often as needed.
+The first step is to spider the repository.  The base URL is hard-coded in the *gmane.py* and is hard-coded to the Sakai developer list. The *gmane.py* file operates as a spider in that it runs slowly and retrieves one mail message per second so  as to avoid getting throttled by the website. It stores all of its data in a database and can be interrupted and re-started as often as needed.
 
 *Note: Windows has difficulty in displaying UTF-8 characters
 in the console so for each console window you open, you may need
