@@ -20,7 +20,7 @@ The *gmodel.py* program does a number of data cleaning steps:
 
 - Domain names are truncated to two levels for .com, .org, .edu, and .net other domain names are truncated to three levels. So si.umich.edu becomes umich.edu and caret.cam.ac.uk becomes cam.ac.uk. Also mail addresses are forced to lower case and some of the @gmane.org address like the following:
 
-   arwhyte-63aXycvo3TyHXe+LvDLADg@public.gmane.org 
+   `arwhyte-63aXycvo3TyHXe+LvDLADg@public.gmane.org`
    
    are converted to the real address whenever there is a matching real email address elsewhere in the message corpus.
 
@@ -40,7 +40,7 @@ And so all the mail messages will be collected under one sender even if they use
 You can also make similar entries in the DNSMapping table if there are multiple DNS names you want mapped to a single DNS. In the Sakai data I add the following
 mapping:
 
-iupui.edu -> indiana.edu
+`iupui.edu -> indiana.edu`
 
 So all the folks from the various Indiana University campuses are tracked together.
 
