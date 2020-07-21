@@ -3,11 +3,9 @@
 
 I used the mail archive stored at http://mbox.dr-chuck.net/ for this project.
 
-The first step is to spider the repository.  The base URL is hard-coded in the *gmane.py* and is hard-coded to the Sakai developer list. The *gmane.py* file operates as a spider in that it runs slowly and retrieves one mail message per second so  as to avoid getting throttled by the website. It stores all of its data in a database and can be interrupted and re-started as often as needed.
+The first step is to spider the repository. The base URL is hard-coded in the *gmane.py* and is hard-coded to the Sakai developer list. The *gmane.py* file operates as a spider in that it runs slowly and retrieves one mail message per second so as to avoid getting throttled by the website. It stores all of its data in a database and can be interrupted and re-started as often as needed.
 
-*Note: Windows has difficulty in displaying UTF-8 characters
-in the console so for each console window you open, you may need
-to type the following command before running this code:*
+*Note: Windows has difficulty in displaying UTF-8 characters in the console so for each console window you open, you may need to type the following command before running this code:*
 
 `chcp 65001`
 
@@ -37,73 +35,21 @@ The *gmodel.py* program does a number of data cleaning steps:
   - s-githens@northwestern.edu ->  swgithen@mtu.edu
   - sgithens@cam.ac.uk -> swgithen@mtu.edu
 
+And so all the mail messages will be collected under one sender even if they used several email addresses over the lifetime of the mailing list.
 
---------------------START HERE-----------------------------
-
-And so all the mail messages will be collected under one sender even if 
-they used several email addresses over the lifetime of the mailing list.
-
-You can also make similar entries in the DNSMapping table if there are multiple
-DNS names you want mapped to a single DNS.  In the Sakai data I add the following
+You can also make similar entries in the DNSMapping table if there are multiple DNS names you want mapped to a single DNS. In the Sakai data I add the following
 mapping:
 
 iupui.edu -> indiana.edu
 
-So all the folks from the various Indiana University campuses are tracked together
+So all the folks from the various Indiana University campuses are tracked together.
 
-You can re-run the gmodel.py over and over as you look at the data, and add mappings
-to make the data cleaner and cleaner.   When you are done, you will have a nicely
-indexed version of the email in index.sqlite.   This is the file to use to do data
-analysis.   With this file, data analysis will be really quick.
+You can re-run the *gmodel.py* over and over as you look at the data, and add mappings to make the data cleaner and cleaner. When you are done, you will have a nicely indexed version of the email in *index.sqlite*. This is the file to use to do data analysis. With this file, data analysis will be really quick.
 
-The first, simplest data analysis is to do a "who does the most" and "which 
-organzation does the most"?  This is done using gbasic.py:
+The first, simplest data analysis is done using *gbasic.py*. It basically finds top Email list participants and top Email organizations.
 
-Mac: python3 gbasic.py 
-Win: gbasic.py 
+Problematic data in *index.sqlite* can be fixed by updating the Mapping table and DNSMapping table in *content.sqlite* and re-running *gmodel.py*.
 
-How many to dump? 5
-Loaded messages= 51330 subjects= 25033 senders= 1584
+*gword.py* is used to get frequency data and convert it to a JavaScript file, *gword.js* which you can visualize using the file *gword.htm*.
 
-Top 5 Email list participants
-steve.swinsburg@gmail.com 2657
-azeckoski@unicon.net 1742
-ieb@tfd.co.uk 1591
-csev@umich.edu 1304
-david.horwitz@uct.ac.za 1184
-
-Top 5 Email list organizations
-gmail.com 7339
-umich.edu 6243
-uct.ac.za 2451
-indiana.edu 2258
-unicon.net 2055
-
-You can look at the data in index.sqlite and if you find a problem, you 
-can update the Mapping table and DNSMapping table in content.sqlite and
-re-run gmodel.py.
-
-There is a simple vizualization of the word frequence in the subject lines
-in the file gword.py:
-
-Mac: python3 gword.py
-Win: gword.py
-
-Range of counts: 33229 129
-Output written to gword.js
-
-This produces the file gword.js which you can visualize using the file 
-gword.htm.
-
-A second visualization is in gline.py.  It visualizes email participation by 
-organizations over time.
-
-Mac: python3 gline.py 
-Win: gline.py 
-
-Loaded messages= 51330 subjects= 25033 senders= 1584
-Top 10 Oranizations
-['gmail.com', 'umich.edu', 'uct.ac.za', 'indiana.edu', 'unicon.net', 'tfd.co.uk', 'berkeley.edu', 'longsight.com', 'stanford.edu', 'ox.ac.uk']
-Output written to gline.js
-
-Its output is written to gline.js which is visualized using gline.htm.
+A second visualization is in *gline.py*. It visualizes email participation by organizations over time. Its output is written to *gline.js* which is visualized using *gline.htm*.
